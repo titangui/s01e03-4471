@@ -1,0 +1,48 @@
+---
+layout: runbook
+title: '#4471 is three problems, not one'
+owner: support desk
+status: living
+reviewed: 2026-11-12
+signature: v1.eyJzdWIiOiI0NTc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTQ0ODg5ODQsImV4cCI6MTc5NDU3NTM4NH0.WfZdegZZ0UtRTUJu1XvphGkP-n0_9ppQ1df1Lzvpj9g
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import SplitCounts from '#lib/kb/SplitCounts.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  const signature = 'v1.eyJzdWIiOiI0NTc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTQ0ODg5ODQsImV4cCI6MTc5NDU3NTM4NH0.WfZdegZZ0UtRTUJu1XvphGkP-n0_9ppQ1df1Lzvpj9g';
+</script>
+
+[#4471](/kb/incidents/4471) merged 412 reports as one known issue. Read by tenant, they are three
+different problems. Only the first has a fix queued.
+
+<Callout kind="warn">
+Not one issue. Do not count #4471 as "known" for the second and third problems.
+</Callout>
+
+## The split
+
+<CauseTable ticket={4471} />
+
+<SplitCounts ticket={4471} issues={{ parser: "https://github.com/titangui/s01e03-4471/issues/1", hint: "https://github.com/titangui/s01e03-4471/issues/2", oneDay: "https://github.com/titangui/s01e03-4471/issues/3" }} />
+
+The table above files the 5 one-day reports under `parser`, by tenant. They are not a swap of day and
+month, so the second table counts them apart.
+
+## How we told them apart
+
+- Count by **tenant**: its locale and its booking form. Never by `intakeTag`, which is a guess from
+  the reporter's browser. 15 of the 33 hint reports were tagged `parser`.
+- Count each report id once. The export repeats 15 of them.
+- Read the body when a report does not fit. The 5 one-day reports say "one day off", not "month and
+  day swapped".
+
+## Lessons
+
+- Merging by subject line ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) hid two bugs inside
+  a known one.
+- "One ticket per issue" means one per cause, not one per subject.
+
+<RenderStamp {signature} />
