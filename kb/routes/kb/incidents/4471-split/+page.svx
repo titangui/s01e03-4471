@@ -15,10 +15,10 @@ signature: v1.eyJzdWIiOiI0NTc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
 </script>
 
 [#4471](/kb/incidents/4471) merged 412 reports as one known issue. Read by tenant, they are two
-different problems. Only the first has a fix queued.
+different problems. The first was fixed ("fix(dates): parse dd/mm for eu locales"). The second will not be fixed: the booking-v3 form is retired. #4471 closed on 5 October.
 
 <Callout kind="warn">
-Not one issue. Do not count #4471 as "known" for the second problem.
+Not one issue. #4471 held two problems, and they ended differently.
 </Callout>
 
 ## The split
